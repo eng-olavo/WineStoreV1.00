@@ -1,9 +1,10 @@
 {% extends 'base.html' %}
+{% load bootstrap4 %}
 {% block content %}
 
     <div>
         <h1>Vinhos</h1>
-        <a class="btn btn-info" href="{% url 'add_vinho' %}">Adicionar</a>
+        <a class="btn btn-primary" href="{% url 'add_vinho' %}">Adicionar</a>
         <a class="btn btn-success" href="#">Login</a>
         <br><br>
     </div>
@@ -12,21 +13,26 @@
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th scope="col">#</th>
                     <th scope="col">Nome</th>
+                    <th scope="col">Uva</th>
+                    <th scope="col">Tipo</th>
+                    <th scope="col">Açucar</th>
                     <th scope="col">Safra</th>
-                    <th scope="col">Ações</th>
+                    <th scope="col"></th>
                 </tr>
             </thead>
             <tbody>
                 {% for vinho in vinhos %}
                     <tr>
-                        <td>{{ vinho.id }}</td>
                         <td>{{ vinho.nome }}</td>
+                        <td>{{ vinho.uvas }}</td>
+                        <td>{{ vinho.tipo }}</td>
+                        <td>{{ vinho.acucar }}</td>
                         <td>{{ vinho.safra }}</td>
                         <td>
                             <a class="btn btn-warning" href="{% url 'upd_vinho' vinho.pk %}">Editar</a>
                             <a class="btn btn-danger" href="{% url 'del_vinho' vinho.pk %}">Deletar</a>
+                            <a class="btn btn-info" href="{% url 'det_vinho' vinho.pk %}">Detalhes</a>
                         </td>
                     </tr>
                 {% endfor %}

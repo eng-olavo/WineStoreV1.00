@@ -1,3 +1,4 @@
+from django.views import generic
 from django.views.generic import ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
@@ -14,7 +15,10 @@ class IndexView(ListView):
 class CreateVinhoView(CreateView):
     model = Vinho
     template_name = 'vinho_form.html'
-    fields = ['nome', 'safra']
+    fields = ['nome', 'uvas', 'tipo', 'acucar','safra',
+              'nacionalidade','vinicola','reserva','alcool',
+              'temperatura','volume','amadurecimento', 'guarda',
+              'visual','olfativo','gustativo',]
     success_url = reverse_lazy('index')
 
 
@@ -29,3 +33,10 @@ class DeleteVinhoView(DeleteView):
     model = Vinho
     template_name = 'vinho_del.html'
     success_url = reverse_lazy('index')
+
+
+class DetailsVinhoView(generic.DetailView):
+    models = Vinho
+    template_name = 'details.html'
+    queryset = Vinho.objects.all()
+    context_object_name = 'vinho'
