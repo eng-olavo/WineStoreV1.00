@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <div>
+        <h1>Vinhos</h1>
+        <a class="btn btn-info" href="{% url 'add_vinho' %}">Adicionar</a>
+        <a class="btn btn-success" href="#">Login</a>
+        <br><br>
+    </div>
+
+    <div class="row">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Safra</th>
+                    <th scope="col">Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for vinho in vinhos %}
+                    <tr>
+                        <td>{{ vinho.id }}</td>
+                        <td>{{ vinho.nome }}</td>
+                        <td>{{ vinho.safra }}</td>
+                        <td>
+                            <a class="btn btn-warning" href="{% url 'upd_vinho' vinho.pk %}">Editar</a>
+                            <a class="btn btn-danger" href="{% url 'del_vinho' vinho.pk %}">Deletar</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
